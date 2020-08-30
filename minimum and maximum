@@ -1,0 +1,58 @@
+import tkinter
+import random
+
+
+class RandomValue:
+    def __init__(self):
+        mainWindow = tkinter.Tk()
+
+        mainWindow.title('Random')
+        mainWindow.geometry('480x360')
+        mainWindow.columnconfigure(0, weight=10)
+        mainWindow.columnconfigure(1, weight=1)
+        mainWindow.columnconfigure(2, weight=100)
+        mainWindow.rowconfigure(0, weight=10)
+        mainWindow.rowconfigure(1, weight=10)
+        mainWindow.rowconfigure(2, weight=10)
+
+
+        strings = tkinter.Frame(mainWindow)
+        strings.grid(row=0, column=0)
+        values_1 = tkinter.Label(mainWindow, text='Minimum:')
+        values_2 = tkinter.Label(mainWindow, text='Maximum:')
+        value1 = tkinter.Entry(mainWindow)
+        value2 = tkinter.Entry(mainWindow)
+        # result_from_func(value1, value2)
+        values_1.grid(row=1, column=1, sticky='nw')
+        values_2.grid(row=2, column=1, sticky='nw')
+        # value1.grid(row=1, column=2, sticky='nw')
+        # value2.grid(row=2, column=2, sticky='nw')
+
+        resultString = tkinter.Label(mainWindow, text='Results')
+        resultString.grid(row=4, column=1, sticky='ne')
+        results = tkinter.Entry(mainWindow)
+        # results.grid(row=4, column=2, sticky='nw')
+
+        self.v1 = tkinter.StringVar()
+        self.v2 = tkinter.StringVar()
+
+        self.res = tkinter.StringVar()
+
+        tkinter.Entry(mainWindow, textvariable=self.v1).grid(row=1, column=2, sticky='nw')
+        tkinter.Entry(mainWindow, textvariable=self.v2).grid(row=2, column=2, sticky='nw')
+
+        tkinter.Label(mainWindow, textvariable=self.res).grid(row=4, column=2, sticky='nw')
+
+        buttons = tkinter.Button(mainWindow, text='Calculate', command=self.calcPayment)
+        buttons.grid(row=4, column=4, sticky='sw')
+
+        mainWindow.mainloop()
+
+    def calPayment(self):
+        v1 = int(self.v1.get())
+        v2 = int(self.v2.get())
+
+        self.res.set(random.randint(v1, v2))
+
+
+RandomValue()
